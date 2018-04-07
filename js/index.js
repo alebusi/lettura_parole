@@ -7,17 +7,16 @@ var whaitFor= 0;
 var timeUnit=300;
 
 
-var coeffLetters=2;
-var coeffPunctuation=2;
-var coeffMinBrake=1.5;
-var coeffWhite=0.05;
+var coeffLetters=1.2;
+var coeffPunctuation=3;
+var coeffMinBrake=3;
+var coeffWhite=0.1;
 
 
 setInterval(function(){ 
-  var d = new Date();
-  currentMills = d.getTime();
+
   
-  read() }, 500);
+  read() }, 50);
 
 
 
@@ -39,24 +38,35 @@ function isLetter(c) {
 
 function read(){
 
+var d = new Date();
+currentMills = d.getTime();
+
+
   if(prevMills+whaitFor<currentMills && currentIndex < whatToRead.length){
+    
    
   
-      prevMills=currentMills;
+      
     
       var textSample = whatToRead[currentIndex][0];
-     
+      document.getElementById('reading_area').innerHTML =textSample;
 
       if (isReading==true ){
-        currentIndex  = currentIndex +1;
+        
+
         whaitFor= whatToRead[currentIndex][1]*timeUnit;
+       
+        prevMills=currentMills;
+
+        currentIndex  = currentIndex +1;
 
       }
       else{whaitFor=0;}
 
 
-    
-      document.getElementById('reading_area').innerHTML =textSample;
+
+
+      
     
       
      
@@ -107,7 +117,7 @@ function readFrom() {
   var current_string="";
   
   for (i = 0; i < raw_text.length; i++) { 
-    console.log(raw_text[i],isNumeric(raw_text[i]))
+    
     
     if (isLetter(raw_text[i]) || isNumeric(raw_text[i]) ){
       current_string = current_string.concat(raw_text[i]); 
@@ -136,8 +146,8 @@ function readFrom() {
   
   whatToRead=reading_complete_list;
   currentIndex = 0;
-  prevMills= 0;
-  whaitFor= 0;
+  prevMills= 100;
+  whaitFor= 100;
   isReading=true; 
   
 }
