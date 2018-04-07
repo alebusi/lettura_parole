@@ -7,10 +7,10 @@ var whaitFor= 0;
 var timeUnit=300;
 
 
-var coeffLetters=1.2;
+var coeffLetters=0.3;
 var coeffPunctuation=3;
 var coeffMinBrake=3;
-var coeffWhite=0.1;
+
 
 
 setInterval(function(){ 
@@ -61,7 +61,7 @@ currentMills = d.getTime();
         currentIndex  = currentIndex +1;
 
       }
-      else{whaitFor=0;}
+      else{ whaitFor= 0;}
 
 
 
@@ -83,7 +83,7 @@ currentMills = d.getTime();
 function timeMultiplier(el){
   var time= 0;
   if (el.length > 1){
-    time= el.length*coeffLetters;
+    time= el.length*coeffLetters+1;
   }
   
   else if ( el==","||
@@ -126,14 +126,15 @@ function readFrom() {
     else{
       if (current_string!=""){
         reading_complete_list.push([current_string, timeMultiplier(current_string)]);
-         reading_complete_list.push(["",coeffWhite]);
+   
           current_string=""; 
       }
       
       
       reading_complete_list.push( [raw_text[i], timeMultiplier( raw_text[i])]);
-      reading_complete_list.push(["",coeffWhite]);
+
      
+
     }
     
     
@@ -161,25 +162,33 @@ switch(keyName) {
         if (isReading==true) {isReading=false;}
         else{isReading=true}
         break;
-    case "ArrowUp":
+    case "ArrowDown":
 
         timeUnit=timeUnit+50;
         break;
-    case "ArrowDown":
+    case "ArrowUp":
         if (timeUnit>50) {
         timeUnit=timeUnit-50;}
         break;
     case "ArrowLeft":
-      currentIndex=currentIndex-3;
+
+      
+      if (isReading==true) {currentIndex=currentIndex-3;}
+      else {currentIndex=currentIndex-1;}
       if (currentIndex<0) {currentIndex=0}
-      whaitFor= 0;
+        whaitFor= 0;
+      console.log(currentIndex)
+
       break;
 
     case "ArrowRight":
 
         currentIndex=currentIndex+1;
         whaitFor= 0;
+        console.log(currentIndex)
+
         break;
+
 }
 
 
