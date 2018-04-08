@@ -54,6 +54,16 @@ function isLetter(c) {
 }
 
 
+function textReplacer(textSample){
+  if (textSample==" ") { textSample="<div class='circle red ' ></div>"}
+  // else if (textSample==".") { textSample="<div class='circle black' ></div>"} //esempio di come altri caratteri possono essere sistituiti
+  
+  return textSample;
+
+
+}
+
+
 
 function read(){
   //controlla che ora è (in millisecondi)
@@ -66,7 +76,11 @@ function read(){
   if(prevMills+whaitFor<currentMills && currentIndex < whatToRead.length){
 
       var textSample = whatToRead[currentIndex][0];
+
+      textSample = textReplacer(textSample);
+
       document.getElementById('reading_area').innerHTML =textSample;
+
       //aggiorno il testo dentro al <p>
 
       if (isReading==true ){
@@ -134,10 +148,11 @@ function readFrom() {
     //per ogni lettera nel testo in imput
     
 
-    if (isLetter(raw_text[i]) || isNumeric(raw_text[i]) ){
+    if (isLetter(raw_text[i]) || isNumeric(raw_text[i])  || raw_text[i]==raw_text[i-1]|| raw_text[i]==raw_text[i+1] ){
       //se è una lettera
 
       current_string = current_string.concat(raw_text[i]); 
+
       if (letterByLetter) { reading_complete_list.push([current_string, coeffLetters]) }
 
     }
