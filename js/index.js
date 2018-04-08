@@ -102,18 +102,17 @@ function read(){
 function timeMultiplier(el){
   //funzione che calcola il tempo di attesa in base ai coefficenti
 
+  var includedPunctuation =[",",";",'.',":","?","!"]
+    //simboli da considerare come punteggiatura
+
   var time= 0;
   if (el.length > 1){
     //se è una poarola o un numero 
     time= el.length*coeffLetters+coeffMinLetter;
   }
   
-  else if ( el==","||
-          el==";"||
-          el=="."||
-          el==":"||
-          el=="?"||
-          el=="!"){
+   
+  else if ( includedPunctuation.indexOf(el) >= 0 ){
        time= coeffPunctuation;
      //se è un segno di punteggiatura
   }
@@ -147,11 +146,19 @@ function readFrom() {
   for (i = 0; i < raw_text.length; i++) { 
     //per ogni lettera nel testo in imput
     
+    r_t = raw_text[i]
 
-    if (isLetter(raw_text[i]) || isNumeric(raw_text[i])  || raw_text[i]==raw_text[i-1]|| raw_text[i]==raw_text[i+1] ){
+    var includedSymbols =['“','”','"',"'","_","-",raw_text[i+1],raw_text[i-1]]
+    //simboli da considerare come lettere virgolette e puntini di sospensione
+
+
+    if (isLetter(r_t) || 
+      isNumeric(r_t)  ||
+      includedSymbols.indexOf(r_t) >= 0)
+     {
       //se è una lettera
 
-      current_string = current_string.concat(raw_text[i]); 
+      current_string = current_string.concat(r_t); 
 
       if (letterByLetter) { reading_complete_list.push([current_string, coeffLetters]) }
 
@@ -168,7 +175,7 @@ function readFrom() {
           current_string=""; 
       }
       
-      reading_complete_list.push( [raw_text[i], timeMultiplier( raw_text[i])]);
+      reading_complete_list.push( [r_t, timeMultiplier( r_t)]);
 
 
 
