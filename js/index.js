@@ -78,8 +78,9 @@ function read(){
       var textSample = whatToRead[currentIndex][0];
 
       textSample = textReplacer(textSample);
-
-      document.getElementById('reading_area').innerHTML =textSample;
+   
+      if (document.getElementById('reading_area').innerHTML!=textSample){
+         document.getElementById('reading_area').innerHTML =textSample;}
 
       //aggiorno il testo dentro al <p>
 
