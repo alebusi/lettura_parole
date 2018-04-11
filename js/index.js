@@ -1,6 +1,6 @@
 //settaggi
 
-var timeUnit=600; 
+var timeUnit=1500; 
 //questa è l'unità in millisecondi che viene moltiplicata per i 
 //coefficenti per determinare la durata a schermo delle scritte, 
 //è il valore modificabile tramite le frecce.
