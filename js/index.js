@@ -1,6 +1,6 @@
 //settaggi
 
-var timeUnit=1500; 
+var timeUnit=3000; 
 //questa è l'unità in millisecondi che viene moltiplicata per i 
 //coefficenti per determinare la durata a schermo delle scritte, 
 //è il valore modificabile tramite le frecce.
@@ -13,7 +13,7 @@ var coeffPunctuation=3;//durata a schermo di un segno di punteggiatura
 var coeffMinBrake=3;//durata a schermo dello spazio
 
 
-var letterByLetter=true; //lettera per lettera o parola per parola
+var letterByLetter=false; //lettera per lettera o parola per parola
 
 
 
